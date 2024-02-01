@@ -1,0 +1,48 @@
+From 2780e47b877e44cbb30f1540e0868254b9c098ed Mon Sep 17 00:00:00 2001
+From: Filip Jergle Almquist <filip.jergle.almquist@uxstream.com>
+Date: Thu, 1 Feb 2024 11:57:58 +0100
+Subject: [PATCH] Change to swapll
+
+---
+ randr/rrscreen.c    | 4 ++--
+ randr/rrsdispatch.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/randr/rrscreen.c b/randr/rrscreen.c
+index 58b5299b4..6382545d7 100644
+--- a/randr/rrscreen.c
++++ b/randr/rrscreen.c
+@@ -313,7 +313,7 @@ static inline void swap_modeinfos(xRRModeInfo *modeinfos, int i)
+     swapl(&modeinfos[i].id);
+     swaps(&modeinfos[i].width);
+     swaps(&modeinfos[i].height);
+-    swapl(&modeinfos[i].dotClock);
++    swapll(&modeinfos[i].dotClock);
+     swaps(&modeinfos[i].hSyncStart);
+     swaps(&modeinfos[i].hSyncEnd);
+     swaps(&modeinfos[i].hTotal);
+@@ -604,7 +604,7 @@ rrGetScreenResources(ClientPtr client, Bool query)
+                 swapl(&modeinfos[i].id);
+                 swaps(&modeinfos[i].width);
+                 swaps(&modeinfos[i].height);
+-                swapl(&modeinfos[i].dotClock);
++                swapll(&modeinfos[i].dotClock);
+                 swaps(&modeinfos[i].hSyncStart);
+                 swaps(&modeinfos[i].hSyncEnd);
+                 swaps(&modeinfos[i].hTotal);
+diff --git a/randr/rrsdispatch.c b/randr/rrsdispatch.c
+index 7d7b5a884..4bf9bef93 100644
+--- a/randr/rrsdispatch.c
++++ b/randr/rrsdispatch.c
+@@ -232,7 +232,7 @@ SProcRRCreateMode(ClientPtr client)
+     swapl(&modeinfo->id);
+     swaps(&modeinfo->width);
+     swaps(&modeinfo->height);
+-    swapl(&modeinfo->dotClock);
++    swapll(&modeinfo->dotClock);
+     swaps(&modeinfo->hSyncStart);
+     swaps(&modeinfo->hSyncEnd);
+     swaps(&modeinfo->hTotal);
+-- 
+2.39.2
+

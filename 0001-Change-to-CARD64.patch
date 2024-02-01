@@ -1,0 +1,36 @@
+From f1dd818874a992c6661e97a921ea870d9774564a Mon Sep 17 00:00:00 2001
+From: Filip Jergle Almquist <filip.jergle.almquist@uxstream.com>
+Date: Thu, 1 Feb 2024 11:55:38 +0100
+Subject: [PATCH xorgproto] Change to CARD64
+
+---
+ include/X11/extensions/randrproto.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/include/X11/extensions/randrproto.h b/include/X11/extensions/randrproto.h
+index 624c254..15ce33d 100644
+--- a/include/X11/extensions/randrproto.h
++++ b/include/X11/extensions/randrproto.h
+@@ -186,7 +186,7 @@ typedef struct _xRRModeInfo {
+     RRMode		id;
+     CARD16		width;
+     CARD16		height;
+-    CARD32		dotClock;
++    CARD64		dotClock;
+     CARD16		hSyncStart;
+     CARD16		hSyncEnd;
+     CARD16		hTotal;
+@@ -196,8 +196,9 @@ typedef struct _xRRModeInfo {
+     CARD16		vTotal;
+     CARD16		nameLength;
+     RRModeFlags		modeFlags;
++    CARD32      pad;
+ } xRRModeInfo;
+-#define sz_xRRModeInfo		    32
++#define sz_xRRModeInfo		    40
+ 
+ typedef struct {
+     CARD8   reqType;
+-- 
+2.39.2
+
